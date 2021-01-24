@@ -22,6 +22,19 @@ namespace _2C2P.DEMO.Api.Features.Transactions
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
+        [HttpPost()]
+        public async Task<IActionResult> InsertTransaction(Transaction transaction)
+        {
+            var response = await _mediator.Send(new InsertTransactionCommand(transaction));
+
+            if (response.IsError)
+            {
+                return BadRequest(response.FormatErrors());
+            }
+
+            return Ok();
+        }
+
         [HttpGet("currency")]
         [ProducesResponseType(typeof(List<TransactionDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -38,31 +51,35 @@ namespace _2C2P.DEMO.Api.Features.Transactions
 
         }
 
-        [HttpPost()]
-        public async Task<IActionResult> InsertTransaction(Transaction transaction)
+        [HttpPost("date")]
+        [ProducesResponseType(typeof(List<TransactionDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetTransactionsByDate(GetTransactionsByDateQuery query)
         {
-            var response = await _mediator.Send(new InsertTransactionCommand(transaction));
+
+            var response = await _mediator.Send(query);
 
             if (response.IsError)
             {
                 return BadRequest(response.FormatErrors());
             }
 
-            return Ok();
-        }
-
-        [HttpGet("date")]
-        public async Task<IActionResult> GetTransactionsByDate()
-        {
-
-            return Ok();
+            return Ok(response.Data);
         }
 
         [HttpGet("status")]
+        [ProducesResponseType(typeof(List<TransactionDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetTransactionsByStatus(string status)
         {
+            var response = await _mediator.Send(new GetTransactionsByStatusQuery(status));
 
-            return Ok();
+            if (response.IsError)
+            {
+                return BadRequest(response.FormatErrors());
+            }
+
+            return Ok(response.Data);
         }
     }
 }
