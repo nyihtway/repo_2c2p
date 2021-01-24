@@ -1,7 +1,6 @@
 ﻿using _2C2P.DEMO.Domain.Models;
 using _2C2P.DEMO.Infrastructure.Interfaces;
 using AutoMapper;
-using Newtonsoft.Json;
 
 namespace _2C2P.DEMO.Api.Models
 {
@@ -14,8 +13,8 @@ namespace _2C2P.DEMO.Api.Models
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Transaction, TransactionDTO>()
-                .ForMember(dest=> dest.Id, act=> act.MapFrom(src => src.TransactionId))
-                .ForMember(dest => dest.Payment, act => act.MapFrom(src => string.Concat(src.Amount, " " , src.CurrencyCode)))
+                .ForMember(dest => dest.Id, act => act.MapFrom(src => src.TransactionId))
+                .ForMember(dest => dest.Payment, act => act.MapFrom(src => string.Concat(src.Amount, " ", src.CurrencyCode)))
                 .ForAllMembers(opt => opt.Condition((source, dest, sourceMember, destMember) => (sourceMember != null)));
         }
     }

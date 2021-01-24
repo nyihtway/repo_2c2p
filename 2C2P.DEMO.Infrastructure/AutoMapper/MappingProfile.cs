@@ -1,10 +1,8 @@
 ﻿using _2C2P.DEMO.Infrastructure.Interfaces;
 using AutoMapper;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace _2C2P.DEMO.Infrastructure.AutoMapper
 {

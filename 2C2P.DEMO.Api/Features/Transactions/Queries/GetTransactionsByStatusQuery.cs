@@ -1,14 +1,14 @@
 ﻿using _2C2P.DEMO.Api.Models;
+using _2C2P.DEMO.Domain.Models;
 using _2C2P.DEMO.Infrastructure.Interfaces;
 using _2C2P.DEMO.Infrastructure.Responses;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using AutoMapper;
-using _2C2P.DEMO.Domain.Models;
 
 namespace _2C2P.DEMO.Api.Features.Transactions.Queries
 {

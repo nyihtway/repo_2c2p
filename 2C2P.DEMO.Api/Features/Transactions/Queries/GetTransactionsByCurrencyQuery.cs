@@ -1,14 +1,14 @@
 ﻿using _2C2P.DEMO.Api.Models;
+using _2C2P.DEMO.Domain.Models;
 using _2C2P.DEMO.Infrastructure.Interfaces;
 using _2C2P.DEMO.Infrastructure.Responses;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using AutoMapper;
-using _2C2P.DEMO.Domain.Models;
 
 namespace _2C2P.DEMO.Api.Features.Transactions.Queries
 {
@@ -35,7 +35,7 @@ namespace _2C2P.DEMO.Api.Features.Transactions.Queries
             {
                 var currency = request._currency;
                 var result = new List<TransactionDTO>();
-                IEnumerable<Transaction> transactions= await _transactionRepository.GetTransactionsByCurrency(currency);
+                IEnumerable<Transaction> transactions = await _transactionRepository.GetTransactionsByCurrency(currency);
 
                 result = _mapper.Map<List<TransactionDTO>>(transactions.ToList());
 

@@ -1,7 +1,5 @@
 using _2C2P.DEMO.Api.AutofacModules;
 using _2C2P.DEMO.Infrastructure.AutoMapper;
-using _2C2P.DEMO.Infrastructure.Interfaces;
-using _2C2P.DEMO.Infrastructure.Repositories;
 using Autofac;
 using AutoMapper;
 using FluentValidation;
@@ -65,7 +63,7 @@ namespace _2C2P.DEMO.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             var clientSettings = MongoClientSettings.FromUrl(new MongoUrl(Configuration.GetSection("MongoDBConnection:ConnectionString").Value));
-            
+
             builder.RegisterModule(new InfrastructureModule(new MongoClient(clientSettings),
                        Configuration.GetSection("MongoDBConnection:Database").Value));
             builder.RegisterModule(new MediatorModule());
