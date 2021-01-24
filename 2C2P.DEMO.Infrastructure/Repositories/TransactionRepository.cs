@@ -3,7 +3,6 @@ using _2C2P.DEMO.Infrastructure.Interfaces;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace _2C2P.DEMO.Infrastructure.Repositories

@@ -7,12 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2C2P.DEMO.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2C2P.DEMO.Domain", "2C2P.DEMO.Domain\2C2P.DEMO.Domain.csproj", "{096837A7-5A2C-44DC-A763-CD14ACAC6A89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2C2P.DEMO.Api", "2C2P.DEMO.Api\2C2P.DEMO.Api.csproj", "{976EDEA6-E085-46AE-818F-A60F2DEADA44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2C2P.DEMO.Api", "2C2P.DEMO.Api\2C2P.DEMO.Api.csproj", "{976EDEA6-E085-46AE-818F-A60F2DEADA44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DAED2FE8-97CF-4A9F-BBA5-A296B436BEF5}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5D13BDFF-A105-4789-A1D4-4F94C0B6AE63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9A20775C-CC6F-4070-BBC9-CC4BABD9A63F} = {5D13BDFF-A105-4789-A1D4-4F94C0B6AE63}
+		{096837A7-5A2C-44DC-A763-CD14ACAC6A89} = {5D13BDFF-A105-4789-A1D4-4F94C0B6AE63}
+		{976EDEA6-E085-46AE-818F-A60F2DEADA44} = {5D13BDFF-A105-4789-A1D4-4F94C0B6AE63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0BC7DED-7D95-4516-9644-17F35564A0CA}

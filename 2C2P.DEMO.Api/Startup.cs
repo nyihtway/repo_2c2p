@@ -1,16 +1,17 @@
+using _2C2P.DEMO.Api.AutofacModules;
+using _2C2P.DEMO.Infrastructure.AutoMapper;
+using _2C2P.DEMO.Infrastructure.Interfaces;
+using _2C2P.DEMO.Infrastructure.Repositories;
+using Autofac;
+using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace _2C2P.DEMO.Api
 {
@@ -49,8 +50,27 @@ namespace _2C2P.DEMO.Api
                 });
             });
 
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(typeof(Startup).Assembly);
 
+            var mappingConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AllowNullCollections = true;
+                cfg.AddProfile<MappingProfile>();
+            });
+
+            services.AddSingleton(mappingConfig.CreateMapper());
+
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            var clientSettings = MongoClientSettings.FromUrl(new MongoUrl(Configuration.GetSection("MongoDBConnection:ConnectionString").Value));
+            
+            builder.RegisterModule(new InfrastructureModule(new MongoClient(clientSettings),
+                       Configuration.GetSection("MongoDBConnection:Database").Value));
+            builder.RegisterModule(new MediatorModule());
+
+            builder.RegisterModule(new BsonModule());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +89,7 @@ namespace _2C2P.DEMO.Api
             options =>
             {
                 options.SwaggerEndpoint($"/swagger/v1/swagger.json", "TRANSACTION API");
-                
+
             });
 
             app.UseEndpoints(endpoints =>
