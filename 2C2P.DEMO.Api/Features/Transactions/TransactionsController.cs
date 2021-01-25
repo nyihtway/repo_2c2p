@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace _2C2P.DEMO.Api.Features.Transactions
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
     public class TransactionsController : ControllerBase

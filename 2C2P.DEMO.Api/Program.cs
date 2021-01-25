@@ -24,7 +24,7 @@ namespace _2C2P.DEMO.Api
                 {
                     webBuilder.ConfigureKestrel((context, config) =>
                     {
-                        config.Listen(IPAddress.Any, 5001);
+                        config.Listen(IPAddress.Any, 5003);
                     });
                     webBuilder.UseStartup<Startup>();
                 });
